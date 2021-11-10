@@ -23,14 +23,14 @@ const main = async () => {
   //     console.error('Error creando el usuario', e);
   //   });
 
-  // OBTENER LOS USUARIOS
-  await UserModel.find()
-    .then((u) => {
-      console.log('usuarios', u);
-    })
-    .catch((e) => {
-      console.error('error obteniendo los usuarios', e);
-    });
+  // // OBTENER LOS USUARIOS
+  // await UserModel.find()
+  //   .then((u) => {
+  //     console.log('usuarios', u);
+  //   })
+  //   .catch((e) => {
+  //     console.error('error obteniendo los usuarios', e);
+  //   });
 
 
   // CREAR UN PROYECTO
@@ -53,13 +53,38 @@ const main = async () => {
   //   });
 
   // OBTENER LOS PROYECTOS
-  await ProjectModel.find()
+  // await ProjectModel.find()
+  //   .then((u) => {
+  //     console.log('proyecto', u);
+  //   })
+  //   .catch((e) => {
+  //     console.error('error obteniendo los proyectos', e);
+  //   });
+
+  //EDITAR UN PROYECTO
+  await ProjectModel.findOneAndUpdate(
+    { nombre: 'Optimizacion' },
+    {
+      objetivos: 'Varios Objetivos',
+      presupuesto: 450000,
+    }
+  )
     .then((u) => {
-      console.log('proyecto', u);
+      console.log('proyecto actualizado', u);
     })
     .catch((e) => {
-      console.error('error obteniendo los proyectos', e);
+      console.error('error actualizando el proyecto', e);
     });
+
+      //ELIMINAR UN PROYECTO
+  // await ProjectModel.findOneAndDelete(
+  //   { nombre: 'Optimizacion' })
+  //   .then((u) => {
+  //     console.log('proyecto eliminado', u);
+  //   })
+  //   .catch((e) => {
+  //     console.error('error eliminando el proyecto', e);
+  //   });
 };
 
 main();
