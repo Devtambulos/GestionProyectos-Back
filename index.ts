@@ -35,15 +35,12 @@ const main = async () => {
 
   // CREAR UN PROYECTO
   // await ProjectModel.create({
-  //   nombre:'Optimizacion',
+  //   nombre:'Proyecto 2',
   //   objetivos:'Cualquier cosa',
   //   presupuesto:250000,
-  //   fechaInicio:'10/11/2021',
-  //   fechaFin:'01/05/2023',
-  //   lider:'Cualquiera',
-  //   estado:Enum_EstadoProyecto.activo,
-  //   fase: Enum_FaseProyecto.iniciado,
-
+  //   fechaInicio:Date.now(),
+  //   fechaFin:new Date("2022/11/10"),
+  //   lider:'618b4816d5bcaf15276bc479',
   // })
   //   .then((u) => {
   //     console.log('Proyecto creado', u);
@@ -53,28 +50,29 @@ const main = async () => {
   //   });
 
   // OBTENER LOS PROYECTOS
-  // await ProjectModel.find()
-  //   .then((u) => {
-  //     console.log('proyecto', u);
-  //   })
-  //   .catch((e) => {
-  //     console.error('error obteniendo los proyectos', e);
-  //   });
-
-  //EDITAR UN PROYECTO
-  await ProjectModel.findOneAndUpdate(
-    { nombre: 'Optimizacion' },
-    {
-      objetivos: 'Varios Objetivos',
-      presupuesto: 450000,
-    }
-  )
+  await ProjectModel.find({nombre:'Proyecto 2'})
+    .populate('lider')
     .then((u) => {
-      console.log('proyecto actualizado', u);
+      console.log('proyecto', u);
     })
     .catch((e) => {
-      console.error('error actualizando el proyecto', e);
+      console.error('error obteniendo los proyectos', e);
     });
+
+  //EDITAR UN PROYECTO
+  // await ProjectModel.findOneAndUpdate(
+  //   { nombre: 'Optimizacion' },
+  //   {
+  //     objetivos: 'Varios Objetivos',
+  //     presupuesto: 450000,
+  //   }
+  // )
+  //   .then((u) => {
+  //     console.log('proyecto actualizado', u);
+  //   })
+  //   .catch((e) => {
+  //     console.error('error actualizando el proyecto', e);
+  //   });
 
       //ELIMINAR UN PROYECTO
   // await ProjectModel.findOneAndDelete(
