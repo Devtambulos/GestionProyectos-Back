@@ -24,3 +24,12 @@ enum Enum_FaseProyecto {
   terminado = 'Terminado',  
 }
 export { Enum_FaseProyecto };
+
+enum Enum_EstadoInscripcion {
+  aceptada = 'Aceptada',
+  rechazada = 'Rechazada'
+}
+
+export {Enum_EstadoInscripcion} 
+
+//IMPORTANTE: También se puede aL final poner un solo export que exporte todos los enum en lugar de un export por cada enum xd
