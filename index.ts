@@ -1,7 +1,14 @@
-import conectarBD from './db/db';
-import { UserModel } from './models/usuario';
-import { ProjectModel } from './models/proyecto';
-import { Enum_EstadoUsuario, Enum_Rol, Enum_EstadoProyecto, Enum_FaseProyecto } from './models/enums';
+import conectarBD from "./db/db";
+import { UserModel } from "./models/usuario";
+import { ProjectModel } from "./models/proyecto";
+import {
+  Enum_EstadoUsuario,
+  Enum_Rol,
+  Enum_EstadoProyecto,
+  Enum_FaseProyecto,
+  Enum_EstadoInscripcion,
+} from "./models/enums";
+import { InscriptionModel } from "./models/inscripcion";
 
 const main = async () => {
   await conectarBD();
@@ -50,15 +57,15 @@ const main = async () => {
   //   });
 
   // OBTENER LOS PROYECTOS
-  await ProjectModel.find({nombre:'Proyecto 2'})
-    .populate('lider')
+  /* await ProjectModel.find({ nombre: "Proyecto 2" })
+    .populate("lider")
     .then((u) => {
-      console.log('proyecto', u);
+      console.log("proyecto", u);
     })
     .catch((e) => {
-      console.error('error obteniendo los proyectos', e);
+      console.error("error obteniendo los proyectos", e);
     });
-
+ */
   //EDITAR UN PROYECTO
   // await ProjectModel.findOneAndUpdate(
   //   { nombre: 'Optimizacion' },
@@ -74,7 +81,7 @@ const main = async () => {
   //     console.error('error actualizando el proyecto', e);
   //   });
 
-      //ELIMINAR UN PROYECTO
+  //ELIMINAR UN PROYECTO
   // await ProjectModel.findOneAndDelete(
   //   { nombre: 'Optimizacion' })
   //   .then((u) => {
@@ -86,4 +93,25 @@ const main = async () => {
 };
 
 main();
+
+
+
+/* 
+//  CREAR UNA INSCRIPCIÓN
+await InscriptionModel.create({
+  proyecto: "618c3684f0ac9548cc042f5c",
+  estudiante: "618b4816d5bcaf15276bc479",
+  estado: Enum_EstadoInscripcion.aceptada,
+  fechaIngreso: Date.now(),
+  fechaEgreso: new Date("2022/4/15"),
+})
+  .then((u) => {
+    console.log("Inscripción creada", u);
+  })
+  .catch((e) => {
+    console.error("Error creando la inscripcion", e);
+  });
+
+ */
+
 

@@ -1,9 +1,11 @@
 import { Schema, model } from 'mongoose';
 import { Enum_EstadoInscripcion } from "./enums"
+import { ProjectModel } from './proyecto';
+import { UserModel } from './usuario';
 
 interface Inscription{
-    proyecto: undefined; //pendiente
-    estudiante: undefined; //pendiente
+    proyecto: Schema.Types.ObjectId; //pendiente
+    estudiante: Schema.Types.ObjectId; //pendiente
     estado: Enum_EstadoInscripcion;
     fechaIngreso: Date;
     fechaEgreso: Date;
@@ -11,12 +13,15 @@ interface Inscription{
 
 const inscriptionSchema = new Schema<Inscription>({
     proyecto: {
-        type: String,
-        required: true
+        type: Schema.Types.ObjectId,
+        required: true,
+        ref: ProjectModel,
+        
     },
     estudiante: {
-        type: String,
+        type: Schema.Types.ObjectId,
         required: true,
+        ref: UserModel
     },
     estado: {
         type: String,
