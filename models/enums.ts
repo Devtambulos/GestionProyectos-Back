@@ -11,3 +11,16 @@ enum Enum_EstadoUsuario {
   noAutorizado = 'No Autorizado',
 }
 export { Enum_EstadoUsuario };
+
+enum Enum_EstadoProyecto {
+  activo = 'Activo',
+  inactivo = 'Inactivo',  
+}
+export { Enum_EstadoProyecto };
+
+enum Enum_FaseProyecto {
+  iniciado = 'Iniciado',
+  desarrollo = 'Desarrollo',
+  terminado = 'Terminado',  
+}
+export { Enum_FaseProyecto };
