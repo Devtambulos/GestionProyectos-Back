@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
-import { Enum_EstadoProyecto } from './enums';
-import { Enum_FaseProyecto } from './enums';
+import { Enum_EstadoProyecto, Enum_FaseProyecto } from './enums';
+import { UserModel } from './usuario';
 
 interface Project {
   nombre: string;
@@ -8,7 +8,7 @@ interface Project {
   presupuesto: number;
   fechaInicio: Date;
   fechaFin: Date;
-  lider: undefined;  //Usuario, pediente como hacer la relacion con la coleccion usuario
+  lider: Schema.Types.ObjectId;
   estado: Enum_EstadoProyecto;
   fase: Enum_FaseProyecto;
 }
@@ -35,22 +35,23 @@ const projectSchema = new Schema<Project>({
     required: true,
   },
   lider: {
-    type: String,
+    type: Schema.Types.ObjectId,
     required: true,
+    ref: UserModel,
   },
   estado: {
     type: String,
-    required: true,
     enum: Enum_EstadoProyecto,
+    default: Enum_EstadoProyecto.inactivo,
   },
   fase: {
     type: String,
-    required: true,
     enum: Enum_FaseProyecto,
+    default: Enum_FaseProyecto.nula,
   },
 
 });
 
-const ProjectModel = model('proyecto', projectSchema);
+const ProjectModel = model('proyecto', projectSchema, "proyectos");
 
 export { ProjectModel };
