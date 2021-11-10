@@ -42,10 +42,10 @@ const userSchema = new Schema<User>({
    estado: {
     type: String,
     required: true,
-    enum: Enum_Rol,
+    enum: Enum_EstadoUsuario,
   },
 });
 
-const UserModel = model('User', userSchema);
+const UserModel = model('usuario', userSchema);
 
 export { UserModel };
