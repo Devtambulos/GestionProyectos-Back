@@ -3,11 +3,30 @@ enum Enum_Rol {
   lider = 'Líder',
   administrador = 'Administrador',
 }
-export { Enum_Rol };
 
 enum Enum_EstadoUsuario {
   pendiente = 'Pendiente',
   autorizado = 'Autorizado',
   noAutorizado = 'No Autorizado',
 }
-export { Enum_EstadoUsuario };
+
+enum Enum_EstadoProyecto {
+  activo = 'Activo',
+  inactivo = 'Inactivo',  
+}
+
+enum Enum_FaseProyecto {
+  iniciado = 'Iniciado',
+  desarrollo = 'En Desarrollo',
+  terminado = 'Terminado',
+  nula = '',  
+}
+
+enum Enum_EstadoInscripcion {
+  aceptada = 'Aceptada',
+  rechazada = 'Rechazada'
+}
+
+
+
+export { Enum_Rol, Enum_EstadoUsuario, Enum_EstadoProyecto, Enum_FaseProyecto, Enum_EstadoInscripcion};
