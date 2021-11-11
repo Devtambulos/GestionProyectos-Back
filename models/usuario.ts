@@ -24,6 +24,16 @@ const userSchema = new Schema<User>({
   correo: {
     type: String,
     required: true,
+    unique: true,
+    validate: {
+      validator: (email) => {
+        if (email.includes('@')&& email.incluces('@')) {
+          return true;
+          } else {
+          return false;
+        }
+      },  
+    },    
   },
   identificacion: {
     type: String,
@@ -41,11 +51,11 @@ const userSchema = new Schema<User>({
   },
    estado: {
     type: String,
-    required: true,
     enum: Enum_EstadoUsuario,
+    default: Enum_EstadoUsuario.pendiente,
   },
 });
 
-const UserModel = model('usuario', userSchema);
+const UserModel = model('User', userSchema,'usuario');
 
 export { UserModel };
