@@ -7,19 +7,36 @@ import {
   Enum_EstadoProyecto,
   Enum_FaseProyecto,
   Enum_EstadoInscripcion,
+  Enum_TipoObjetivo,
 } from "./models/enums";
 import { InscriptionModel } from "./models/inscripcion";
 import { AvanceModel } from "./models/avance";
+import { ObjetivoModel } from "./models/objetivos";
 
 const main = async () => {
   await conectarBD();
 
+
+    
 
 
   
 };
 
 main();
+
+    //  CREAR OBJETIVO
+  // ObjetivoModel.create({
+  //   proyecto: '618c3a3598482ebb20d5b692',
+  //   descripcion: "Objetivo especifico 1",
+  //   tipo: Enum_TipoObjetivo.especifico
+  // })
+  //   .then((a) =>{
+  //     console.log('Avance creado',a);
+  //   })
+  //   .catch((e)=>{
+  //     console.log('Error',e);
+  //   });
 
   /* 
   CREAR AVANCES
