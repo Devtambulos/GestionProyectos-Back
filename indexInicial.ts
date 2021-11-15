@@ -9,11 +9,36 @@ import {
   Enum_EstadoInscripcion,
 } from "./models/enums";
 import { InscriptionModel } from "./models/inscripcion";
+import { AvanceModel } from "./models/avance";
 
 const main = async () => {
   await conectarBD();
 
-  // CREAR UN USUARIO
+
+
+  
+};
+
+main();
+
+  /* 
+  CREAR AVANCES
+  AvanceModel.create({
+    proyecto: '618c3a3598482ebb20d5b692',
+    descripcion: "Avanzando",
+    observaciones: 'Avanzando',
+    fecha: Date.now(),
+    creadoPor: '618b4816d5bcaf15276bc479'
+  })
+    .then((a) =>{
+      console.log('Avance creado',a);
+    })
+    .catch((e)=>{
+      console.log('Error',e);
+    });
+    */
+
+// CREAR UN USUARIO
   // await UserModel.create({
   //   nombre: 'Marcela',
   //   apellido: 'Reyes',
@@ -90,10 +115,6 @@ const main = async () => {
   //   .catch((e) => {
   //     console.error('error eliminando el proyecto', e);
   //   });
-};
-
-main();
-
 
 
 /* 
