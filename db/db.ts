@@ -1,14 +1,12 @@
 import { connect } from 'mongoose';
 
 const connectDB = async () => {
-  return await connect(   
-    'mongodb+srv://userFelipe:admin@gestionproyectos.9onm9.mongodb.net/GestionProyectos?retryWrites=true&w=majority'
-  )
+  return await connect(process.env.DATABASE_URL)
     .then(() => {
       console.log('Conexion exitosa');
     })
     .catch((e) => {
-      console.error('Error conectando a la bd', e);
+      console.error('Error conectando a la DB', e);
     });
 };
 
