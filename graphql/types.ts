@@ -50,22 +50,27 @@ enum Enum_EstadoUsuario {
 
   }
 
-  # type Proyecto {
-  #   _id: ID!
-  #   nombre: String!
-  #   presupuesto: Float!
-  #   fechaInicio: Date!
-  #   fechaFin: Date!
-  #   estado: Enum_EstadoProyecto!
-  #   fase: Enum_FaseProyecto!
-  #   lider: Usuario!
-  #   objetivos: Objetivo
-  # }
+  input crearObjetivo {
+    descripcion: String!
+    tipo: Enum_TipoObjetivo!
+  }
+
+  type Proyecto {
+    _id: ID!
+    nombre: String!
+    presupuesto: Float!
+    fechaInicio: Date!
+    fechaFin: Date!
+    estado: Enum_EstadoProyecto!
+    fase: Enum_FaseProyecto!
+    lider: Usuario!
+    objetivos: [Objetivo]
+  }
 
   type Query {
     Usuarios: [Usuario]
     Usuario(_id: String!): Usuario
-    # Proyectos: [Proyecto]
+    Proyectos: [Proyecto]
   }
 
   type Mutation {
@@ -91,15 +96,16 @@ enum Enum_EstadoUsuario {
 
     eliminarUsuario(_id: String, correo: String): Usuario
 
-    # crearProyecto(
-    #   nombre: String!
-    #   presupuesto: Float!
-    #   fechaInicio: Date!
-    #   fechaFin: Date!
-    #   estado: Enum_EstadoProyecto!
-    #   fase: Enum_FaseProyecto!
-    #   lider: String!
-    # ): Proyecto
+    crearProyecto(
+      nombre: String!
+      presupuesto: Float!
+      fechaInicio: Date!
+      fechaFin: Date!
+      estado: Enum_EstadoProyecto!
+      fase: Enum_FaseProyecto!
+      lider: String!
+      objetivos: [crearObjetivo]
+    ): Proyecto
   }
 `;
 

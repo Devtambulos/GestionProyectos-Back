@@ -19,12 +19,12 @@ const projectSchema = new Schema<Project>({
     type: String,
     required: true,
   },
-  objetivos: [ {
+  objetivos: [{
     type: Schema.Types.ObjectId,
     required: true,
     ref: ObjetivoModel,
   },
-],
+  ],
   presupuesto: {
     type: Number,
     required: true,
