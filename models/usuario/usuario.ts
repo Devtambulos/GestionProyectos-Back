@@ -1,5 +1,10 @@
 import { Schema, model } from 'mongoose';
+<<<<<<< HEAD:models/usuario/usuario.ts
 import { Enum_Rol, Enum_EstadoUsuario } from '../enums/enums';
+=======
+import { Enum_Rol } from './enums/enums';
+import { Enum_EstadoUsuario } from './enums/enums';
+>>>>>>> eebb7f4509da9361ad6d4ef8907baa2c3407376f:models/usuario.ts
 
 interface User {
   nombre: string;

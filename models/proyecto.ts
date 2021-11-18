@@ -1,6 +1,10 @@
 import { Schema, model } from 'mongoose';
 import { Enum_EstadoProyecto, Enum_FaseProyecto } from './enums/enums';
+<<<<<<< HEAD
 import { UserModel } from './usuario/usuario';
+=======
+import { UserModel } from './usuario';
+>>>>>>> eebb7f4509da9361ad6d4ef8907baa2c3407376f
 
 interface Project {
   nombre: string;

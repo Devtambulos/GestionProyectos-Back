@@ -9,7 +9,11 @@ import {
   Enum_EstadoInscripcion,
   Enum_TipoObjetivo,
 } from "./models/enums/enums";
+<<<<<<< HEAD
 import { InscriptionModel } from "./models/inscripcion";
+=======
+import { InscriptionModel } from "./models/inscripcion/inscripcion";
+>>>>>>> eebb7f4509da9361ad6d4ef8907baa2c3407376f
 import { AvanceModel } from "./models/avance";
 import { ObjetivoModel } from "./models/objetivos";
 
