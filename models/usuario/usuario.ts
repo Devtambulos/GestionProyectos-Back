@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
-import { Enum_Rol } from './enums';
-import { Enum_EstadoUsuario } from './enums';
+import { Enum_Rol } from '../enums/enums';
+import { Enum_EstadoUsuario } from '../enums/enums';
 
 interface User {
   nombre: string;
