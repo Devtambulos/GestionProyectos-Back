@@ -5,6 +5,9 @@ import { Enum_EstadoUsuario, Enum_Rol } from './models/enums';
 const main = async () => {
   await conectarBD();
 
+
+
+  
   // CREAR UN USUARIO
   await UserModel.create({
     nombre: 'Marcela',

@@ -1,6 +1,6 @@
 import { connect } from 'mongoose';
 
-const connectDB = async () => {
+const conectarBD = async () => {
   return await connect(   
     'mongodb+srv://MarcelaR:nreyes123@gestionproyectos.9onm9.mongodb.net/GestionProyectos?retryWrites=true&w=majority'
   )
@@ -12,4 +12,4 @@ const connectDB = async () => {
     });
 };
 
-export default connectDB;
+export default conectarBD;
