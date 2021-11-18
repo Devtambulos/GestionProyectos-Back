@@ -1,13 +1,11 @@
 import { Schema, model } from 'mongoose';
-import { Enum_Rol } from './enums';
-import { Enum_EstadoUsuario } from './enums';
+import { Enum_Rol, Enum_EstadoUsuario } from '../enums/enums';
 
 interface User {
   nombre: string;
   apellido: string;
   correo: string;
   identificacion: string;
-  contrasena: string;
   rol: Enum_Rol;
   estado: Enum_EstadoUsuario;
 }
@@ -27,22 +25,15 @@ const userSchema = new Schema<User>({
     unique: true,
     validate: {
       validator: (email) => {
-        if (email.includes('@')&& email.incluces('@')) {
-          return true;
-          } else {
-          return false;
-        }
-      },  
-    },    
+        return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
+      },
+      message: 'El formato del correo electrónico está malo.',
+    },
   },
   identificacion: {
     type: String,
     required: true,
     unique: true,
-  },
-  contrasena: {
-    type: String,
-    required: true,
   },
   rol: {
     type: String,
@@ -52,10 +43,10 @@ const userSchema = new Schema<User>({
    estado: {
     type: String,
     enum: Enum_EstadoUsuario,
-    default: Enum_EstadoUsuario.pendiente,
+    default: Enum_EstadoUsuario.PENDIENTE,
   },
 });
 
-const UserModel = model('User', userSchema,'usuario');
+const UserModel = model('User', userSchema);
 
 export { UserModel };

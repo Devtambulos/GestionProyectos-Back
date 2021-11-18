@@ -1,5 +1,5 @@
 import conectarBD from "./db/db";
-import { UserModel } from "./models/usuario";
+import { UserModel } from "./models/usuario/usuario";
 import { ProjectModel } from "./models/proyecto";
 import {
   Enum_EstadoUsuario,
@@ -8,7 +8,7 @@ import {
   Enum_FaseProyecto,
   Enum_EstadoInscripcion,
   Enum_TipoObjetivo,
-} from "./models/enums";
+} from "./models/enums/enums";
 import { InscriptionModel } from "./models/inscripcion";
 import { AvanceModel } from "./models/avance";
 import { ObjetivoModel } from "./models/objetivos";

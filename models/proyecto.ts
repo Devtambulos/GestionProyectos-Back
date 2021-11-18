@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
-import { Enum_EstadoProyecto, Enum_FaseProyecto } from './enums';
-import { UserModel } from './usuario';
+import { Enum_EstadoProyecto, Enum_FaseProyecto } from './enums/enums';
+import { UserModel } from './usuario/usuario';
 
 interface Project {
   nombre: string;
@@ -42,12 +42,12 @@ const projectSchema = new Schema<Project>({
   estado: {
     type: String,
     enum: Enum_EstadoProyecto,
-    default: Enum_EstadoProyecto.inactivo,
+    default: Enum_EstadoProyecto.INACTIVO,
   },
   fase: {
     type: String,
     enum: Enum_FaseProyecto,
-    default: Enum_FaseProyecto.nula,
+    default: Enum_FaseProyecto.NULO,
   },
 
 });
