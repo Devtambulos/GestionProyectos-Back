@@ -8,8 +8,8 @@ import {
   Enum_FaseProyecto,
   Enum_EstadoInscripcion,
   Enum_TipoObjetivo,
-} from "./models/enums";
-import { InscriptionModel } from "./models/inscripcion";
+} from "./models/enums/enums";
+import { InscriptionModel } from "./models/inscripcion/inscripcion";
 import { AvanceModel } from "./models/avance";
 import { ObjetivoModel } from "./models/objetivos";
 

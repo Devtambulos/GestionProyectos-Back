@@ -1,3 +1,14 @@
+import { resolverInscripcion } from '../models/inscripcion/resolvers'
+
+export const resolvers = [resolverInscripcion]
+
+
+
+
+
+
+
+/* 
 const resolvers = {
     Query: {
       Usuarios: async (parent, args) => {
@@ -18,4 +29,4 @@ const resolvers = {
     },
   };
   
-  export { resolvers };
+  export { resolvers }; */
