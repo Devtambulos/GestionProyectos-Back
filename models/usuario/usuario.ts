@@ -43,11 +43,12 @@ const userSchema = new Schema<User>({
   },
    estado: {
     type: String,
+    required: true,
     enum: Enum_EstadoUsuario,
     default: Enum_EstadoUsuario.PENDIENTE,
   },
 });
 
-const UserModel = model('User', userSchema);
+const UserModel = model('usuario', userSchema);
 
 export { UserModel };

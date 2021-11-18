@@ -27,22 +27,3 @@ app.listen({ port: process.env.PORT || 4000 }, async () => {
 
   console.log('Servidor listo');
 });
-
-// CREAR UN USUARIO
-  // await UserModel.create({
-  //   nombre: 'Marcela',
-  //   apellido: 'Reyes',
-  //   correo: 'Marcereyesq@hotmail.com',
-  //   identificacion: '1057579801',
-  //   contrasena: 'nreyes123',
-  //   rol: Enum_Rol.administrador,
-  //   estado: Enum_EstadoUsuario.autorizado,
-  // })
-  //   .then((u) => {
-  //     console.log('Usuario creado', u);
-  //   })
-  //   .catch((e) => {
-  //     console.error('Error creando el usuario', e);
-  //   });
-
-
