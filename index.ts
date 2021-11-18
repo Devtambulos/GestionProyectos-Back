@@ -10,10 +10,9 @@ const main = async () => {
     nombre: 'Marcela',
     apellido: 'Reyes',
     correo: 'Marcereyesq@hotmail.com',
-    identificacion: '1057579801',
-    contrasena: 'nreyes123',
+    identificacion: '10575798012',
     rol: Enum_Rol.administrador,
-    estado: Enum_EstadoUsuario.autorizado,
+    estado: Enum_EstadoUsuario.pendiente,
   })
     .then((u) => {
       console.log('Usuario creado', u);

@@ -30,10 +30,6 @@ const userSchema = new Schema<User>({
     required: true,
     unique: true,
   },
-  contrasena: {
-    type: String,
-    required: true,
-  },
   rol: {
     type: String,
     required: true,
@@ -42,7 +38,7 @@ const userSchema = new Schema<User>({
    estado: {
     type: String,
     required: true,
-    enum: Enum_Rol,
+    enum: Enum_EstadoUsuario,
   },
 });
 
