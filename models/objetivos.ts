@@ -2,25 +2,26 @@ import { Schema, model } from 'mongoose';
 import { Enum_TipoObjetivo } from './enums/enums';
 import { ProjectModel } from './proyecto';
 
-interface Objetivo{
+interface Objetivo {
     proyecto: Schema.Types.ObjectId;
     descripcion: string;
-    tipo: Enum_TipoObjetivo;}
+    tipo: Enum_TipoObjetivo;
+}
 
 const objetivoSchema = new Schema<Objetivo>({
-    proyecto:{
+    proyecto: {
         type: Schema.Types.ObjectId,
         required: true,
-        ref: ProjectModel
+        ref: ProjectModel,
     },
-    descripcion:{
+    descripcion: {
         type: String,
         required: true,
     },
     tipo: {
         type: String,
         enum: Enum_TipoObjetivo,
-        required: true    
+        required: true
     }
 });
 
