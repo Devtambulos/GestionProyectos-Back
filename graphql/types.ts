@@ -37,7 +37,6 @@ enum Enum_EstadoUsuario {
     nombre: String!
     apellido: String!
     identificacion: String!
-    contrasena: String!
     correo: String!
     rol: Enum_Rol!
     estado: Enum_EstadoUsuario
@@ -74,7 +73,6 @@ enum Enum_EstadoUsuario {
       apellido: String!
       correo: String!
       identificacion: String!      
-      contrasena: String!
       rol: Enum_Rol!
       estado: Enum_EstadoUsuario
     ): Usuario
