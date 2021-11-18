@@ -1,10 +1,11 @@
 import { Schema, model } from 'mongoose';
 import { Enum_EstadoProyecto, Enum_FaseProyecto } from './enums';
+import { ObjetivoModel } from './objetivos';
 import { UserModel } from './usuario';
 
 interface Project {
   nombre: string;
-  objetivos: string;
+  objetivos: Schema.Types.ObjectId;
   presupuesto: number;
   fechaInicio: Date;
   fechaFin: Date;
@@ -18,10 +19,12 @@ const projectSchema = new Schema<Project>({
     type: String,
     required: true,
   },
-  objetivos: {
-    type: String,
+  objetivos: [ {
+    type: Schema.Types.ObjectId,
     required: true,
+    ref: ObjetivoModel,
   },
+],
   presupuesto: {
     type: Number,
     required: true,
@@ -42,12 +45,12 @@ const projectSchema = new Schema<Project>({
   estado: {
     type: String,
     enum: Enum_EstadoProyecto,
-    default: Enum_EstadoProyecto.inactivo,
+    default: Enum_EstadoProyecto.INACTIVO,
   },
   fase: {
     type: String,
     enum: Enum_FaseProyecto,
-    default: Enum_FaseProyecto.nula,
+    default: Enum_FaseProyecto.NULO,
   },
 
 });
