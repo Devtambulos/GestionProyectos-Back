@@ -12,10 +12,10 @@ const tiposObjetivo = gql`
     filtrarObjetivo(idProyecto: String!): [Objetivo]
   }
   type Mutation {
-    crearObjetivo( _id: ID!,
-        descripcion: String!,
-        tipo: Enum_TipoObjetivo!,
-        proyecto: Proyecto!): Objetivo
+    crearObjetivo( _id: ID!
+        descripcion: String!
+        tipo: Enum_TipoObjetivo!
+        proyecto: String!): Objetivo
   }
 `;
 
