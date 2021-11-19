@@ -10,4 +10,4 @@ const tiposGlobales = gql`
 scalar Date
 `;
 
-export const tipos = [tiposGlobales,/*tiposProyecto */ ,/*tiposObjetivo*/ , /* tiposInscripcion */,/*tiposAvance*/ ,tiposUsuario,tiposEnums];
+export const tipos = [tiposGlobales,tiposProyecto,tiposObjetivo, tiposInscripcion,tiposAvance,tiposUsuario,tiposEnums];
