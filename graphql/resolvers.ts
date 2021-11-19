@@ -4,4 +4,4 @@ import { resolversAvance } from '../models/avance/resolvers';
 import { resolversObjetivo } from '../models/objetivo/resolvers';
 import { resolversProyecto } from '../models/proyecto/resolvers';
 
-export const resolvers = [resolversUsuario,/* resolversProyecto */ , /* resolversObjetivo*/ , /* resolversAvance */ , /* resolverInscripcion */];
+export const resolvers = [resolversUsuario, resolversProyecto, resolversObjetivo, resolversAvance , resolverInscripcion];
