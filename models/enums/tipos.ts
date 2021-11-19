@@ -25,6 +25,13 @@ const tiposEnums = gql`
     GENERAL
     ESPECIFICO
   }
+
+
+  enum Enum_TipoInscripcion {
+    ACEPTADO
+    RECHAZADO
+    PENDIENTE
+  }
 `;
 
 export { tiposEnums };

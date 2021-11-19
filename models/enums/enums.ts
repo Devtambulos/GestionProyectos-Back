@@ -23,8 +23,9 @@ enum Enum_FaseProyecto {
 }
 
 enum Enum_EstadoInscripcion {
-  ACEPTADA = 'ACEPTADA',
-  RECHAZADA = 'RECHAZADA'
+  ACEPTADO = 'ACEPTADO',
+  RECHAZADO = 'RECHAZADO',
+  PENDIENTE = 'PENDIENTE'
 }
 
 enum Enum_TipoObjetivo {

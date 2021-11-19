@@ -1,24 +1,31 @@
 import {InscriptionModel} from "./inscripcion"
 
-const resolverInscripcion = {
+const resolverInscripciones = {
     Query: {
-        Inscripcion: async (parent, args) => {
-            const inscripcion = await InscriptionModel.find().populate('proyecto').populate('estudiante')
-            return inscripcion;
+        Inscripciones: async (parent, args) => {
+            const inscripciones = await InscriptionModel.find()/* .populate('proyecto').populate('estudiante') */
+            return inscripciones;
         },
     },
     Mutation: {
         crearInscripcion: async (parent, args) => {
             const inscripcionCreada = await InscriptionModel.create({
-                estado: args.estado,
-                fechaIngreso: args.fechaIngreso,
-                fechaEgreso: args.fechaEgreso,
+                estado: args.estado,     
                 proyecto: args.proyecto,
                 estudiante: args.estudiante
             });
             return inscripcionCreada
         },
+        aprobarInscripcion: async(parent, args) => {
+            const inscripcionAprobada = await InscriptionModel.findByIdAndUpdate(args.id, {
+                estado: 'ACEPTADO',
+                fechaIngreso: Date.now()
+            });
+            return inscripcionAprobada
+        },
+        /* ... */
     },
+    
 };
 
-export { resolverInscripcion }
+export { resolverInscripciones }
