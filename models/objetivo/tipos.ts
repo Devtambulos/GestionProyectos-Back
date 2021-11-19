@@ -3,20 +3,20 @@ import { gql } from 'apollo-server-express';
 const tiposObjetivo = gql`
   type Objetivo {
     _id: ID!
-    proyecto: Proyecto!
     descripcion: String!
     tipo: Enum_TipoObjetivo!
+    proyecto: Proyecto!
   }
-  
   type Query {
-      Objetivos: [Objetivo]
+    Objetivos: [Objetivo]
+    filtrarObjetivo(idProyecto: String!): [Objetivo]
   }
-  type Mutation{
-      crearObjetivo(
-         proyecto: String!,
-         descripcion: String!,
-         tipo: Enum_TipoObjetivo, 
-      ):Objetivo
+  type Mutation {
+    crearObjetivo( _id: ID!,
+        descripcion: String!,
+        tipo: Enum_TipoObjetivo!,
+        proyecto: Proyecto!): Objetivo
   }
 `;
+
 export { tiposObjetivo };
