@@ -24,7 +24,8 @@ enum Enum_FaseProyecto {
 
 enum Enum_EstadoInscripcion {
   ACEPTADA = 'ACEPTADA',
-  RECHAZADA = 'RECHAZADA'
+  RECHAZADA = 'RECHAZADA',
+  PENDIENTE = 'PENDIENTE',
 }
 
 enum Enum_TipoObjetivo {
@@ -32,4 +33,11 @@ enum Enum_TipoObjetivo {
   ESPECIFICO = 'ESPECIFICO',
 }
 
-export { Enum_Rol, Enum_EstadoUsuario, Enum_EstadoProyecto, Enum_FaseProyecto, Enum_EstadoInscripcion, Enum_TipoObjetivo};
+export { 
+  Enum_Rol, 
+  Enum_EstadoUsuario, 
+  Enum_EstadoProyecto, 
+  Enum_FaseProyecto, 
+  Enum_EstadoInscripcion, 
+  Enum_TipoObjetivo,
+};
