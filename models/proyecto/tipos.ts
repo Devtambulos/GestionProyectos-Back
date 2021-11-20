@@ -23,11 +23,11 @@ const tiposProyecto = gql`
     crearProyecto(
       nombre: String!
       presupuesto: Float!
-      fechaInicio: Date!
-      fechaFin: Date!
-      estado: Enum_EstadoProyecto!
-      fase: Enum_FaseProyecto!
-      lider: String!
+      fechaInicio: Date
+      fechaFin: Date
+      estado: Enum_EstadoProyecto
+      fase: Enum_FaseProyecto
+      lider: String
     ): Proyecto
 
     editarProyecto(
