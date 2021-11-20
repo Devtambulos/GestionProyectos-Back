@@ -3,7 +3,7 @@ const resolversAvance = {
     Query: {
       Avances: async (parent, args) => {
         const avances = await AvanceModel.find();
-        /*.populate('proyecto').populate('creadoPor');*/
+        // .populate('proyecto').populate('creadoPor');
         return avances;
       },
       filtrarAvance: async (parents, args) => {
@@ -23,6 +23,20 @@ const resolversAvance = {
         });
         return avanceCreado;
       },
+      editarAvance: async (parent, args) => {
+        const avanceEditado = await AvanceModel.findByIdAndUpdate(
+          args._id,
+          {
+            descripcion: args.descripcion,
+            observaciones: args.observaciones,
+          }
+        );
+        return avanceEditado;
+      },
+      eliminarAvance: async (parent, args) => {
+        const avanceEliminado = await AvanceModel.findOneAndDelete({_id: args._id});
+        return avanceEliminado;
+      }
     },
   };
   
