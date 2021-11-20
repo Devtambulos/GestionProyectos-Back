@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { ProjectModel } from '../proyecto';
+import { ProjectModel } from '../proyecto/proyecto';
 import { UserModel } from '../usuario/usuario';
 
 interface Avance{
@@ -32,7 +32,7 @@ const avanceSchema = new Schema<Avance>({
     creadoPor: {
         type: Schema.Types.ObjectId,
         required: true,
-        ref: UserModel
+        ref: UserModel,
     }
 
     }

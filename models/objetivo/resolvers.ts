@@ -13,7 +13,7 @@ const resolversObjetivo = {
     },
     Mutation: {
       crearObjetivo: async (parents, args) => {
-        const objetivoCreado = ObjetivoModel.create({
+        const objetivoCreado = await ObjetivoModel.create({
           tipo: args.tipo,
           descripcion: args.descripcion,
           proyecto: args.proyecto,
