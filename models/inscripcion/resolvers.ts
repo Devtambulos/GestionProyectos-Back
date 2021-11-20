@@ -25,7 +25,7 @@ const resolverInscripciones = {
           fechaIngreso: Date.now(),
         },
         {new: true}
-      );
+      ).populate('proyecto').populate("estudiante");
       return inscripcionAprobada;
     },
     terminarInscripcion: async (parent, args) => {
@@ -35,7 +35,7 @@ const resolverInscripciones = {
           fechaEgreso: Date.now(),
         },
         {new: true}
-      );
+      ).populate('proyecto').populate("estudiante");
       return inscripcionTerminado
     },
     eliminarInscripcion: async (parent, args) => {
