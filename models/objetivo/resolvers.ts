@@ -6,9 +6,8 @@ const resolversObjetivo = {
         return objetivos;
       },
       filtrarObjetivo: async (parents, args) => {
-        const objetivoFiltrado = await ObjetivoModel.find({ proyecto: args.idProyecto })
-          .populate('proyecto')
-          .populate('creadoPor');
+        const objetivoFiltrado = await ObjetivoModel.findOne({ proyecto: args._idProyecto })
+          .populate('proyecto');
         return objetivoFiltrado;
   
     },
