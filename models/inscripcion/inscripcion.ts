@@ -4,6 +4,7 @@ import { ProjectModel } from '../proyecto/proyecto';
 import { UserModel } from '../usuario/usuario';
 
 
+
 interface Inscription{
     estado: Enum_EstadoInscripcion;
     fechaIngreso: Date;
@@ -12,19 +13,21 @@ interface Inscription{
     estudiante: Schema.Types.ObjectId;
 }
 
-const inscriptionSchema = new Schema<Inscription>  ({
+
+const inscriptionSchema = new Schema/* <Inscription> */({
     estado: {
         type: String,
+        enum: Enum_EstadoInscripcion /* ['ACEPTADO', 'RECHAZADO','PENDIENTE'] */,
+        default: 'PENDIENTE',
         required: true,
-        enum: Enum_EstadoInscripcion,
     },
     fechaIngreso:{
         type: Date,
-        required: true,
+        required: false,
     },
     fechaEgreso: {
         type: Date,
-        required: true,
+        required: false,
     },
     proyecto: {
         type: Schema.Types.ObjectId,
