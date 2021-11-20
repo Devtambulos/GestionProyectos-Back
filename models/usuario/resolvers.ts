@@ -3,7 +3,7 @@ import { UserModel } from './usuario';
 const resolversUsuario = {
   Query: {
     Usuarios: async (parent, args) => {
-      const usuarios = await UserModel.find();
+      const usuarios = await UserModel.find().populate('avances').populate('inscripciones');
       return usuarios;
     },
     Usuario: async (parent, args) => {
@@ -35,8 +35,10 @@ const resolversUsuario = {
         correo: args.correo,
         rol: args.rol,
         estado: args.estado,
-      });
-
+       },
+         {new: true}
+      );
+      
       return usuarioEditado;
     },
     eliminarUsuario: async (parent, args) => {
