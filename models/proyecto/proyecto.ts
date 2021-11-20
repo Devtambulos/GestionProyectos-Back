@@ -23,15 +23,15 @@ const projectSchema = new Schema<Project>({
   },
   fechaInicio: {
     type: Date,
-    required: true,
+    required: false,
   },
   fechaFin: {
     type: Date,
-    required: true,
+    required: false,
   },
   lider: {
     type: Schema.Types.ObjectId,
-    required: true,
+    required: false,
     ref: UserModel,
   },
   estado: {
