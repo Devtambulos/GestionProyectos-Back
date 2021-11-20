@@ -1,6 +1,6 @@
 import conectarBD from "./db/db";
 import { UserModel } from "./models/usuario/usuario";
-import { ProjectModel } from "./models/proyecto";
+import { ProjectModel } from "./models/proyecto/proyecto";
 import {
   Enum_EstadoUsuario,
   Enum_Rol,
