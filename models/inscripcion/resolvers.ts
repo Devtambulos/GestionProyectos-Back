@@ -23,7 +23,8 @@ const resolverInscripciones = {
         {
           estado: "ACEPTADO",
           fechaIngreso: Date.now(),
-        }
+        },
+        {new: true}
       );
       return inscripcionAprobada;
     },
@@ -32,8 +33,10 @@ const resolverInscripciones = {
         args._id,
         {
           fechaEgreso: Date.now(),
-        }
+        },
+        {new: true}
       );
+      return inscripcionTerminado
     },
     eliminarInscripcion: async (parent, args) => {
       const inscripcionEliminada = await InscriptionModel.findByIdAndDelete({

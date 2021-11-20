@@ -8,7 +8,7 @@ interface Objetivo {
     tipo: Enum_TipoObjetivo;
 }
 
-const objetivoSchema = new Schema<Objetivo>({
+const objetivoSchema = new Schema({
     proyecto: {
         type: Schema.Types.ObjectId,
         required: true,
