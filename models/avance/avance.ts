@@ -10,7 +10,7 @@ interface Avance{
     creadoPor: Schema.Types.ObjectId;
 }
 
-const avanceSchema = new Schema<Avance>({
+const avanceSchema = new Schema({
     proyecto: {
         type: Schema.Types.ObjectId,
         required: true,
@@ -27,7 +27,7 @@ const avanceSchema = new Schema<Avance>({
     },    
     observaciones:{
         type: String,
-        required: true,
+        required: false,
     },
     creadoPor: {
         type: Schema.Types.ObjectId,
