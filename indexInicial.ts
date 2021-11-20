@@ -9,9 +9,9 @@ import {
   Enum_EstadoInscripcion,
   Enum_TipoObjetivo,
 } from "./models/enums/enums";
-import { InscriptionModel } from "./models/inscripcion";
-import { AvanceModel } from "./models/avance";
-import { ObjetivoModel } from "./models/objetivos";
+// import { InscriptionModel } from "./models/inscripcion";
+// import { AvanceModel } from "./models/avance/avance";
+// import { ObjetivoModel } from "./models/objetivos";
 
 const main = async () => {
   await conectarBD();
