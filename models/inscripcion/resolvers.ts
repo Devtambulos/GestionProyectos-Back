@@ -31,7 +31,7 @@ const resolverInscripciones = {
       const inscripcionTerminado = await InscriptionModel.findByIdAndUpdate(
         args._id,
         {
-          fechaEgreso: Date,
+          fechaEgreso: Date.now(),
         }
       );
     },
