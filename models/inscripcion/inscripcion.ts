@@ -19,7 +19,7 @@ const inscriptionSchema = new Schema/* <Inscription> */({
         type: String,
         enum: Enum_EstadoInscripcion /* ['ACEPTADO', 'RECHAZADO','PENDIENTE'] */,
         default: 'PENDIENTE',
-        required: true,
+        required: false,
     },
     fechaIngreso:{
         type: Date,
