@@ -3,11 +3,11 @@ import { UserModel } from './usuario';
 const resolversUsuario = {
   Query: {
     Usuarios: async (parent, args) => {
-      const usuarios = await UserModel.find().populate('avances').populate('inscripciones');
+      const usuarios = await UserModel.find().populate('avances').populate('inscripciones').populate('proyectos');
       return usuarios;
     },
     Usuario: async (parent, args) => {
-      const usuario = await UserModel.findOne({ _id: args._id }).populate('avances').populate('inscripciones');
+      const usuario = await UserModel.findOne({ _id: args._id }).populate('avances').populate('inscripciones').populate('proyectos');
       return usuario;
     },
   },

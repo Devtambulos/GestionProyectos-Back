@@ -11,6 +11,7 @@ const tiposUsuario = gql`
     estado: Enum_EstadoUsuario
     avances: [Avance]
     inscripciones: [Inscripcion]
+    proyectos: [Proyecto]
   }
 
   type Query {
