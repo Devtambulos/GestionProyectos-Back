@@ -18,5 +18,8 @@
     "mongoose-unique-validator": "^3.0.0",
     "ts-node": "^10.4.0",
     "typescript": "^4.4.4"
+  },
+  "devDependencies": {
+    "nodemon" : "^2.0.15"
   }
 }
