@@ -1,17 +1,18 @@
 import { Schema, model } from 'mongoose';
+import { createFalse } from 'typescript';
 import { Enum_Rol } from '../enums/enums';
 import { Enum_EstadoUsuario } from '../enums/enums';
 
-interface User {
+/* interface User {
   nombre: string;
   apellido: string;
   identificacion: string;
   correo: string;  
   rol: Enum_Rol;
   estado: Enum_EstadoUsuario;
-}
+} */
 
-const userSchema = new Schema<User>({
+const userSchema = new Schema/* <User> */({
   nombre: {
     type: String,
     required: true,
@@ -38,7 +39,7 @@ const userSchema = new Schema<User>({
   },
   rol: {
     type: String,
-    required: true,
+    required:false,
     enum: Enum_Rol,
   },
    estado: {
@@ -64,6 +65,12 @@ userSchema.virtual('inscripciones', {
   ref: 'Inscripcion',
   localField: '_id',
   foreignField: 'estudiante',
+});
+
+userSchema.virtual('proyectos', {
+  ref: 'proyecto',
+  localField: '_id',
+  foreignField: 'lider',
 });
 
 const UserModel = model('usuario', userSchema);
