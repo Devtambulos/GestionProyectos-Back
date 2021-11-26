@@ -17,21 +17,23 @@ const resolversAvance = {
     Mutation: {
       crearAvance: async (parents, args) => {
         const avanceCreado = await AvanceModel.create({
-          fecha: args.fecha,
+          fecha: Date.now(),
           descripcion: args.descripcion,
           proyecto: args.proyecto,
           creadoPor: args.creadoPor,
         });
+
+        if (Object.keys(args).includes('fecha')) {
+          avanceCreado.fecha = args.fecha;
+        }
         return avanceCreado;
       },
       editarAvance: async (parent, args) => {
-        const avanceEditado = await AvanceModel.findByIdAndUpdate(
-          args._id,
-          {
+        const avanceEditado = await AvanceModel.findByIdAndUpdate(args._id,{
             descripcion: args.descripcion,
             observaciones: args.observaciones,
-          }
-        );
+            fecha: args.fecha,
+          },{new:true});
         return avanceEditado;
       },
       eliminarAvance: async (parent, args) => {
