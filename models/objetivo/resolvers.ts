@@ -28,7 +28,9 @@ const resolversObjetivo = {
         args._id, 
       {
         descripcion: args.descripcion,
-      });
+      },
+      {new: true}
+      );
 
       return objetivoEditado;
     },
