@@ -8,38 +8,39 @@ const resolversAvance = {
       return avances;
     },
     filtrarAvance: async (parents, args) => {
-      const avanceFiltrado = await AvanceModel.find({ proyecto: args._id })
+      const avanceFiltrado = await AvanceModel.findOne({ proyecto: args.idProyecto })
         .populate('proyecto')
         .populate('creadoPor');
       return avanceFiltrado;
     },
   },
-  Mutation: {
-    crearAvance: async (parents, args) => {
-      const avanceCreado = await AvanceModel.create({
-        fecha: args.fecha,
-        descripcion: args.descripcion,
-        proyecto: args.proyecto,
-        creadoPor: args.creadoPor,
-      });
-      return avanceCreado;
-    },
-    editarAvance: async (parent, args) => {
-      const avanceEditado = await AvanceModel.findByIdAndUpdate(
-        args._id,
-        {
+    Mutation: {
+      crearAvance: async (parents, args) => {
+        const avanceCreado = await AvanceModel.create({
+          fecha: Date.now(),
+          descripcion: args.descripcion,
+          proyecto: args.proyecto,
+          creadoPor: args.creadoPor,
+        });
+
+        if (Object.keys(args).includes('fecha')) {
+          avanceCreado.fecha = args.fecha;
+        }
+        return avanceCreado;
+      },
+      editarAvance: async (parent, args) => {
+        const avanceEditado = await AvanceModel.findByIdAndUpdate(args._id, {
           descripcion: args.descripcion,
           observaciones: args.observaciones,
-        },
-        { new: true }
-      );
-      return avanceEditado;
+          fecha: args.fecha,
+        }, { new: true });
+        return avanceEditado;
+      },
+      eliminarAvance: async (parent, args) => {
+        const avanceEliminado = await AvanceModel.findOneAndDelete({ _id: args._id });
+        return avanceEliminado;
+      }
     },
-    eliminarAvance: async (parent, args) => {
-      const avanceEliminado = await AvanceModel.findOneAndDelete({ _id: args._id });
-      return avanceEliminado;
-    }
-  },
-};
+  };
 
-export { resolversAvance };
+  export { resolversAvance };

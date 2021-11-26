@@ -10,6 +10,13 @@ const resolversUsuario = {
       const usuario = await UserModel.findOne({ _id: args._id }).populate('avances').populate('inscripciones').populate('proyectos');
       return usuario;
     },
+
+    FiltrarRol: async (parents, args) => {
+      const filtrarRol = await UserModel.find({ rol: args.rol })
+      .populate('avances')
+      .populate('inscripciones')
+      .populate('proyectos')
+      return filtrarRol;},
   },
   Mutation: {
     crearUsuario: async (parent, args) => {
@@ -19,11 +26,8 @@ const resolversUsuario = {
         identificacion: args.identificacion,
         correo: args.correo,
         rol: args.rol,
+        estado: "PENDIENTE"
       });
-
-      if (Object.keys(args).includes('estado')) {
-        usuarioCreado.estado = args.estado;
-      }
 
       return usuarioCreado;
     },
