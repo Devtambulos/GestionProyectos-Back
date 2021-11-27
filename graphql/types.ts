@@ -5,6 +5,8 @@ import { tiposInscripcion } from '../models/inscripcion/tipos';
 import { tiposAvance } from '../models/avance/tipos';
 import { tiposObjetivo } from '../models/objetivo/tipos';
 import { tiposProyecto } from '../models/proyecto/tipos';
+import { tiposAutenticacion } from './auth/tipos';
+
 
 const tiposGlobales = gql`
 scalar Date
@@ -16,4 +18,5 @@ tiposObjetivo,
 tiposInscripcion,
 tiposAvance,
 tiposUsuario,
-tiposEnums];
+tiposEnums,
+tiposAutenticacion];
