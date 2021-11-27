@@ -15,13 +15,10 @@ export const tiposAutenticacion = gql`
       rol: String!
       password: String!
       estado: Enum_EstadoUsuario
-    ): Token! 
-
+    ): Token!
 
     login(correo: String!, password: String!): Token
 
     validateToken: Token
   }
 `;
-
-

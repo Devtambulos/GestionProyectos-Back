@@ -30,9 +30,11 @@ export const resolversAutenticacion = {
       };
     },
 
-    login: async(parent, args) =>{
-      const usuarioEncontrado = await UserModel.findOne({correo: args.correo})
-      if(await bcrypt.compare(args.password, usuarioEncontrado.password)){
+    login: async (parent, args) => {
+      const usuarioEncontrado = await UserModel.findOne({
+        correo: args.correo,
+      });
+      if (await bcrypt.compare(args.password, usuarioEncontrado.password)) {
         return {
           token: generateToken({
             _id: usuarioEncontrado._id,
@@ -44,15 +46,9 @@ export const resolversAutenticacion = {
           }),
         };
       }
-      console.log(usuarioEncontrado)
-
-      
-
-      
+      console.log(usuarioEncontrado);
     },
-    
-    validateToken: async(parent, args, context) => {
 
-    } 
+    validateToken: async (parent, args, context) => {},
   },
 };
