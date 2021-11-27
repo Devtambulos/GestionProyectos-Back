@@ -10,11 +10,11 @@ export const tiposAutenticacion = gql`
     registro(
       nombre: String!
       apellido: String!
-      identificacion: string!
+      identificacion: String!
       correo: String!
       rol: String!
       password: String!
-      estado: Enum_estadoUsuario
+      estado: Enum_EstadoUsuario
     ): Token!
 
     login(correo: String!, password: String!): Token
@@ -22,5 +22,3 @@ export const tiposAutenticacion = gql`
     validateToken: Token
   }
 `;
-
-
