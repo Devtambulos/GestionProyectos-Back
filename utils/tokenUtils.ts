@@ -13,6 +13,7 @@ export const validateToken = (token) => {
           error: err,
         };
       }
+      console.log("error", err,"verificacion", data)
     });
     console.log(verification, token);
     return verification;

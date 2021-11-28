@@ -1,13 +1,25 @@
 import { UserModel } from "./usuario";
+import { Enum_Rol } from "../enums/enums";
+
 
 const resolversUsuario = {
   Query: {
-    Usuarios: async (parent, args) => {
-      const usuarios = await UserModel.find()
-        .populate("avances")
-        .populate("inscripciones")
-        .populate("proyectos");
-      return usuarios;
+    Usuarios: async (parent, args, context) => {
+      if (context.userData.rol === "ADMINISTRADOR") {
+        const usuarios = await UserModel.find()
+          .populate("avances")
+          .populate("inscripciones")
+          .populate("proyectos");
+        return usuarios;
+      } else if (context.userData.rol === "LIDER") {
+        const usuarios = await UserModel.find({ rol: Enum_Rol.ESTUDIANTE })
+        return usuarios;
+      }else if(context.userData.rol === "ESTUDIANTE") {
+        return "No tienes permiso"
+      }else{
+        return "ERROR: no tienes los permisos"
+
+      }
     },
     Usuario: async (parent, args) => {
       const usuario = await UserModel.findOne({ _id: args._id })

@@ -1,0 +1,18 @@
+#################################################################
+    POR SI NECESITAN HACER VALIDACION DESDE EL BACK (EJEMPLO)
+#################################################################
+
+Usuarios: async (parent, args, context) => {
+      if (context.userData.rol === "ADMINISTRADOR") {
+        const usuarios = await UserModel.find()
+          .populate("avances")
+          .populate("inscripciones")
+          .populate("proyectos");
+        return usuarios;
+      } else if (context.userData.rol === "LIDER") {
+        const usuarios = await UserModel.find({ rol: Enum_Rol.ESTUDIANTE })
+        return usuarios;
+      }else if(context.userData.rol === "ESTUDIANTE") {
+        return "no tienes permiso"
+      }
+    },
