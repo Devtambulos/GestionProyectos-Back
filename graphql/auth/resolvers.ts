@@ -26,6 +26,7 @@ export const resolversAutenticacion = {
           identificacion: usuarioCreado.identificacion,
           correo: usuarioCreado.correo,
           rol: usuarioCreado.rol,
+          estado: usuarioCreado.estado
         }),
       };
     },
@@ -43,6 +44,7 @@ export const resolversAutenticacion = {
             identificacion: usuarioEncontrado.identificacion,
             correo: usuarioEncontrado.correo,
             rol: usuarioEncontrado.rol,
+            estado: usuarioEncontrado.estado
           }),
         };
       }
@@ -64,6 +66,7 @@ export const resolversAutenticacion = {
             identificacion: context.userData.identificacion,
             correo: context.userData.correo,
             rol: context.userData.rol,
+            estado: context.userData.estado
           }),
         };
       }
