@@ -1,0 +1,29 @@
+#################################################################
+    POR SI NECESITAN HACER VALIDACION DESDE EL BACK (EJEMPLO)
+#################################################################
+
+se puede mandar la informacion que se requiera segun el rol y si está AUTORIZADO
+
+Usuarios: async (parent, args, context) => {
+      
+      si el rol es admi y esta autorizado pasa x query, al igual con lider y estudiante
+      obviamente si se quiere se puede cambiar los populate o lo que senecsite dependiendo el rol o 
+      algun otro factor
+
+
+      if (context.userData.rol === "ADMINISTRADOR" && context.userData.estado === "AUTORIZADO") {
+        const usuarios = await UserModel.find()
+          .populate("avances")
+          .populate("inscripciones")
+          .populate("proyectos");
+        return usuarios;
+      } else if (context.userData.rol === "LIDER") {
+        const usuarios = await UserModel.find({ rol: Enum_Rol.ESTUDIANTE })
+        return usuarios;
+      }else if(context.userData.rol === "ESTUDIANTE") {
+        return "No tienes permiso"
+      }else{
+        return "ERROR: no tienes los permisos"
+
+      }
+    },
