@@ -12,10 +12,8 @@ const tiposInscripcion = gql`
 
   type Query {
     Inscripciones: [Inscripcion]
-    FiltrarInscripcionPorEstudiante(idEstudiante:String!): [Inscripcion]
-    FiltrarInscripcionPorProyecto(idProyecto:String!): [Inscripcion]
-
-
+    FiltrarInscripcionPorEstudiante(idEstudiante: String!): [Inscripcion]
+    FiltrarInscripcionPorProyecto(idProyecto: String!): [Inscripcion]
   }
 
   type Mutation {
@@ -25,12 +23,11 @@ const tiposInscripcion = gql`
       estudiante: String!
     ): Inscripcion
 
-      aprobarInscripcion(_id: String!): Inscripcion
+    aprobarInscripcion(_id: String!): Inscripcion
 
-      terminarInscripcion(_id: String!): Inscripcion
+    terminarInscripcion(_id: String!): Inscripcion
 
-      eliminarInscripcion(_id: String!): Inscripcion
-
+    eliminarInscripcion(_id: String!): Inscripcion
   }
 `;
 
