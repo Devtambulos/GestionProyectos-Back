@@ -29,12 +29,7 @@ const resolversUsuario = {
       return usuario;
     },
 
-    FiltrarRol: async (parents, args) => {
-      const filtrarRol = await UserModel.find({ rol: args.rol })
-      .populate('avances')
-      .populate('inscripciones')
-      .populate('proyectos')
-      return filtrarRol;},
+
   },
   Mutation: {
     crearUsuario: async (parent, args) => {
@@ -53,7 +48,8 @@ const resolversUsuario = {
 
       return usuarioCreado;
     },
-    editarUsuario: async (parent, args) => {
+    editarUsuario: async (parent, args, context) => {
+      if (context.userData.rol === "ADMINISTRADOR" && context.userData.estado === "AUTORIZADO"){
       const usuarioEditado = await UserModel.findByIdAndUpdate(
         args._id,
         {
@@ -66,8 +62,24 @@ const resolversUsuario = {
         },
         { new: true }
       );
-
       return usuarioEditado;
+    }
+      else if (context.userData.rol === "LIDER" && context.userData.estado === "AUTORIZADO") {
+        const usuarioEditado = await UserModel.findByIdAndUpdate(
+          args._id,
+          {
+            estado: args.estado,
+          },
+          { new: true }
+        );
+        return usuarioEditado;
+      }
+      else if(context.userData.rol === "ESTUDIANTE"  && context.userData.estado === "AUTORIZADO") {
+        return "No tienes permiso"
+      }else{
+        return "ERROR: no tienes los permisos"
+
+      }
     },
     eliminarUsuario: async (parent, args) => {
       if (Object.keys(args).includes("_id")) {
