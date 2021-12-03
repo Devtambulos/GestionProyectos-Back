@@ -56,16 +56,7 @@ const resolversProyecto = {
         return "ERROR: no tienes los permisos"}
       },
       editarProyecto: async (parent, args) => {
-        const proyectoEditado = await ProjectModel.findByIdAndUpdate(args._id, {
-          nombre: args.nombre,
-          fechaInicio: args.fechaInicio,
-          fechaFin: args.fechaFin,
-          presupuesto: args.presupuesto,
-          estado: args.estado,
-          fase: args.fase,
-          lider: args.lider,
-        });
-
+        const proyectoEditado = await ProjectModel.findByIdAndUpdate(args._id, {...args.campos}, {new:true})
         return proyectoEditado;
       },
       eliminarProyecto: async (parent, args) => {
