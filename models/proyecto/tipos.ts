@@ -2,6 +2,16 @@ import { gql } from 'apollo-server-express';
 
 const tiposProyecto = gql`
 
+  input camposProyecto{
+    nombre: String
+    presupuesto: Float
+    fechaInicio: Date
+    fechaFin: Date
+    estado: Enum_EstadoProyecto
+    fase: Enum_FaseProyecto
+    lider: String
+  }
+
   type Proyecto {
     _id: ID!
     nombre: String!
@@ -32,6 +42,7 @@ const tiposProyecto = gql`
 
     editarProyecto(
       _id: String!
+<<<<<<< HEAD
       nombre: String
       presupuesto: Float
       fechaInicio: Date
@@ -39,6 +50,9 @@ const tiposProyecto = gql`
       estado: Enum_EstadoProyecto
       fase: Enum_FaseProyecto
       lider: String
+=======
+      campos: camposProyecto!
+>>>>>>> 77aaa357897b4c20e1ad061f87aaffc7ca94d0d3
     ): Proyecto
 
     eliminarProyecto(_id: String): Proyecto    
