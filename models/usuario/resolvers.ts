@@ -49,8 +49,9 @@ const resolversUsuario = {
       return usuarioCreado;
     },
     editarUsuario: async (parent, args, context) => {
-      if (context.userData.rol === "ADMINISTRADOR" && context.userData.estado === "AUTORIZADO"){
-      const usuarioEditado = await UserModel.findByIdAndUpdate(
+      if (context.userData.rol === "ADMINISTRADOR" && context.userData.estado === "AUTORIZADO" ){
+       
+        const usuarioEditado = await UserModel.findByIdAndUpdate(
         args._id,
         {
           nombre: args.nombre,
@@ -62,7 +63,9 @@ const resolversUsuario = {
         },
         { new: true }
       );
+      
       return usuarioEditado;
+      
     }
       else if (context.userData.rol === "LIDER" && context.userData.estado === "AUTORIZADO") {
         const usuarioEditado = await UserModel.findByIdAndUpdate(
@@ -74,9 +77,7 @@ const resolversUsuario = {
         );
         return usuarioEditado;
       }
-      else if(context.userData.rol === "ESTUDIANTE"  && context.userData.estado === "AUTORIZADO") {
-        return "No tienes permiso"
-      }else{
+      else{
         return "ERROR: no tienes los permisos"
 
       }

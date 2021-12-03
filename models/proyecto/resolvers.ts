@@ -2,12 +2,30 @@ import { ProjectModel } from './proyecto';
 
 const resolversProyecto = {
     Query: {
-      Proyectos: async (parent, args) => {
-        const proyectos = await ProjectModel.find().populate('lider').populate('avances').populate('inscripciones').populate('objetivos');
+      Proyectos: async (parent, args, context) => {
+        if (context.userData.rol === "LIDER" && context.userData.estado === "AUTORIZADO") {
+        const proyectos = await ProjectModel.find({lider: context.userData._id})
+        .populate('lider')
+        .populate('avances')
+        .populate('inscripciones')
+        .populate('objetivos');
         return proyectos;
-      },
+      }
+      else {
+        const proyectos = await ProjectModel.find()
+        .populate('lider')
+        .populate('avances')
+        .populate('inscripciones')
+        .populate('objetivos');
+        return proyectos;
+      }
+    },
       Proyecto: async (parent, args) => {
-        const proyecto = await ProjectModel.findOne({ _id: args._id }).populate('lider').populate('avances').populate('inscripciones').populate('objetivos');
+        const proyecto = await ProjectModel.findOne({ _id: args._id })
+        .populate('lider')
+        .populate('avances')
+        .populate('inscripciones')
+        .populate('objetivos');
         return proyecto;
       },
     },
@@ -55,7 +73,16 @@ const resolversProyecto = {
       }else{
         return "ERROR: no tienes los permisos"}
       },
-      editarProyecto: async (parent, args) => {
+      editarProyecto: async (parent, args, context) => {
+       if(context.userData.rol === "LIDER" && context.userData.estado === "AUTORIZADO" && parent.estado === "ACTIVO"){
+        const proyectoEditado = await ProjectModel.findByIdAndUpdate(args._id, {
+          nombre: args.nombre,
+          presupuesto: args.presupuesto,
+        });
+
+        return proyectoEditado;
+      }
+      else if(context.userData.rol === "ADMINISTRADOR" && context.userData.estado === "AUTORIZADO" && parent.estado === "ACTIVO"){
         const proyectoEditado = await ProjectModel.findByIdAndUpdate(args._id, {
           nombre: args.nombre,
           fechaInicio: args.fechaInicio,
@@ -65,14 +92,21 @@ const resolversProyecto = {
           fase: args.fase,
           lider: args.lider,
         });
+      }
+      else if(context.userData.rol === "ESTUDIANTE"  && context.userData.estado === "AUTORIZADO") {
+        return "No tienes permiso"
+      }
+      else{
+        return "ERROR: no tienes los permisos"
+      }
+    },
 
-        return proyectoEditado;
-      },
       eliminarProyecto: async (parent, args) => {
         const proyectoEliminado = await ProjectModel.findOneAndDelete({ _id: args._id });
         return proyectoEliminado;
       },
     },
   };
+
   
   export { resolversProyecto };
