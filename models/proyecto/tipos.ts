@@ -25,8 +25,15 @@ const tiposProyecto = gql`
     avances: [Avance]
     inscripciones: [Inscripcion]
   }
+
+  input FiltroProyectos {
+    _id: ID
+    estado: Enum_EstadoProyecto
+    fase: Enum_FaseProyecto   
+  }
+
   type Query {
-    Proyectos: [Proyecto]
+    Proyectos(filtro: FiltroProyectos): [Proyecto]
     Proyecto(_id: String!): Proyecto
   }
   type Mutation {
