@@ -4,29 +4,29 @@ import { ProjectModel } from './proyecto';
 const resolversProyecto = {
   Query: {
     Proyectos: async (parent, args, context) => {
-      if (context.userData.rol === "ADMINISTRADOR" && context.userData.estado === "AUTORIZADO") {
+      // if (context.userData.rol === "ADMINISTRADOR" && context.userData.estado === "AUTORIZADO") {
         const proyectos = await ProjectModel.find({...args.filtro})
           .populate('lider')
           .populate('avances')
           .populate('inscripciones')
           .populate('objetivos');
         return proyectos;
-      } else if (context.userData.rol === "LIDER" && context.userData.estado === "AUTORIZADO") {
-        const proyectos = await ProjectModel.find({ lider: context.userData._id })
-          .populate('lider')
-          .populate('avances')
-          .populate('inscripciones')
-          .populate('objetivos');
-        return proyectos;
-      }
-      else {
-        const proyectos = await ProjectModel.find({estado:Enum_EstadoProyecto.ACTIVO})
-          .populate('lider')
-          .populate('avances')
-          .populate('inscripciones')
-          .populate('objetivos');
-        return proyectos;
-      }
+      // } else if (context.userData.rol === "LIDER" && context.userData.estado === "AUTORIZADO") {
+      //   const proyectos = await ProjectModel.find({ lider: context.userData._id })
+      //     .populate('lider')
+      //     .populate('avances')
+      //     .populate('inscripciones')
+      //     .populate('objetivos');
+      //   return proyectos;
+      // }
+      // else {
+      //   const proyectos = await ProjectModel.find({estado:Enum_EstadoProyecto.ACTIVO})
+      //     .populate('lider')
+      //     .populate('avances')
+      //     .populate('inscripciones')
+      //     .populate('objetivos');
+      //   return proyectos;
+      // }
     },
     Proyecto: async (parent, args) => {
       const proyecto = await ProjectModel.findOne({ _id: args._id })
