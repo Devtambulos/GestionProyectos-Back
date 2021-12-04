@@ -1,12 +1,20 @@
 import { AvanceModel } from "./avance";
 const resolversAvance = {
     Query: {
-      Avances: async (parent, args) => {
+      Avances: async (parent, args, context) => {
+        if (context.userData.rol === "LIDER" && context.userData.estado === "AUTORIZADO"){
         const avances = await AvanceModel.find()
           .populate('proyecto')
           .populate('creadoPor');
         return avances;
-      },
+      }
+      else {
+        const avances = await AvanceModel.find()
+          .populate('proyecto')
+          .populate('creadoPor');
+        return avances;
+      }
+    },
       filtrarAvance: async (parents, args) => {
         const avanceFiltrado = await AvanceModel.find({ proyecto: args.idProyecto })
           .populate('proyecto')
@@ -28,14 +36,23 @@ const resolversAvance = {
         }
         return avanceCreado;
       },
-      editarAvance: async (parent, args) => {
+      editarAvance: async (parent, args, context) => {
+        if (context.userData.rol === "LIDER" && context.userData.estado === "AUTORIZADO"){
+
         const avanceEditado = await AvanceModel.findByIdAndUpdate(args._id,{
-            descripcion: args.descripcion,
             observaciones: args.observaciones,
-            fecha: args.fecha,
           },{new:true});
         return avanceEditado;
-      },
+      }
+      else {
+        const avanceEditado = await AvanceModel.findByIdAndUpdate(args._id,{
+          descripcion: args.descripcion,
+          observaciones: args.observaciones,
+          fecha: args.fecha,
+        },{new:true});
+      return avanceEditado;
+      }
+    },
       eliminarAvance: async (parent, args) => {
         const avanceEliminado = await AvanceModel.findOneAndDelete({_id: args._id});
         return avanceEliminado;

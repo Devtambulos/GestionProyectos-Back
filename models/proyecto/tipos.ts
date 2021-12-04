@@ -42,7 +42,6 @@ const tiposProyecto = gql`
 
     editarProyecto(
       _id: String!
-<<<<<<< HEAD
       nombre: String
       presupuesto: Float
       fechaInicio: Date
@@ -50,9 +49,6 @@ const tiposProyecto = gql`
       estado: Enum_EstadoProyecto
       fase: Enum_FaseProyecto
       lider: String
-=======
-      campos: camposProyecto!
->>>>>>> 77aaa357897b4c20e1ad061f87aaffc7ca94d0d3
     ): Proyecto
 
     eliminarProyecto(_id: String): Proyecto    

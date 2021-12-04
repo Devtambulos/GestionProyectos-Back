@@ -17,13 +17,22 @@ const resolverInscripciones = {
       return inscripcionFiltrada;
     },
     FiltrarInscripcionPorProyecto: async (parent, args, context) => {
+      if (context.userData.rol === "LIDER" && context.userData.estado === "AUTORIZADO"){
       const inscripcionFiltrada = await InscriptionModel.find({
         proyecto: args.idProyecto,
       })
         .populate("proyecto")
         .populate("estudiante");
       return inscripcionFiltrada;
-    },
+    }
+      else if (context.userData.rol === "ADMINISTRADOR" && context.userData.estado === "AUTORIZADO"){
+      const inscripcionFiltrada = await InscriptionModel.find({
+        proyecto: args.idProyecto,
+      })
+        .populate("proyecto")
+        .populate("estudiante");
+      return inscripcionFiltrada;
+    }},
   },
   Mutation: {
     crearInscripcion: async (parent, args) => {
@@ -35,7 +44,8 @@ const resolverInscripciones = {
       console.log(args);
       return inscripcionCreada;
     },
-    aprobarInscripcion: async (parent, args) => {
+    aprobarInscripcion: async (parent, args, context) => {
+      if (context.userData.rol === "LIDER" && context.userData.estado === "AUTORIZADO"){
       const inscripcionAprobada = await InscriptionModel.findByIdAndUpdate(
         args._id,
         {
@@ -47,7 +57,8 @@ const resolverInscripciones = {
         .populate("proyecto")
         .populate("estudiante");
       return inscripcionAprobada;
-    },
+    }},
+    
     terminarInscripcion: async (parent, args) => {
       const inscripcionTerminado = await InscriptionModel.findByIdAndUpdate(
         args._id,
