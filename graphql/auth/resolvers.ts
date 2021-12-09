@@ -3,6 +3,8 @@ import bcrypt from "bcrypt";
 import { generateToken } from "../../utils/tokenUtils";
 
 export const resolversAutenticacion = {
+
+
   Mutation: {
     registro: async (parent, args) => {
       const salt = await bcrypt.genSalt(10);
@@ -35,6 +37,13 @@ export const resolversAutenticacion = {
       const usuarioEncontrado = await UserModel.findOne({
         correo: args.correo,
       });
+
+      if(!usuarioEncontrado){
+        return{
+          error:"Correo no encontrado"
+        }
+      }
+
       if (await bcrypt.compare(args.password, usuarioEncontrado.password)) {
         return {
           token: generateToken({
@@ -47,6 +56,10 @@ export const resolversAutenticacion = {
             estado: usuarioEncontrado.estado
           }),
         };
+      }else{
+        return{
+          error:"contraseña incorrecta"
+        }
       }
       console.log(usuarioEncontrado);
     },

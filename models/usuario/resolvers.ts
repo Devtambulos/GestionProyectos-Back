@@ -28,9 +28,13 @@ const resolversUsuario = {
         .populate("proyectos");
       return usuario;
     },
-
+    UsuarioRegistrado: async(parent, args) => {
+      const usuarioExistente = await UserModel.findOne({correo: args.correo})
+      return usuarioExistente
+    },
 
   },
+
   Mutation: {
     crearUsuario: async (parent, args) => {
       const usuarioCreado = await UserModel.create({
