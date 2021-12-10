@@ -10,6 +10,15 @@ export const resolversAutenticacion = {
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(args.password, salt);
 
+      const busquedaUsuario = await UserModel.findOne({
+        correo: args.correo, identificaion: args.identificacion
+      })
+      if(busquedaUsuario){
+        return{
+          error:"Error: Existe un dato ya registrado por otro usuario"
+        }
+      }
+      
       const usuarioCreado = await UserModel.create({
         nombre: args.nombre,
         apellido: args.apellido,
@@ -19,6 +28,13 @@ export const resolversAutenticacion = {
         password: hashedPassword,
       });
       console.log("usuario creado", usuarioCreado);
+      
+
+      if(!usuarioCreado){
+        return{
+          error:"error al reg"
+        }
+      }
 
       return {
         token: generateToken({

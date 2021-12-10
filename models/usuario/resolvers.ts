@@ -28,10 +28,7 @@ const resolversUsuario = {
         .populate("proyectos");
       return usuario;
     },
-    UsuarioRegistrado: async(parent, args) => {
-      const usuarioExistente = await UserModel.findOne({correo: args.correo})
-      return usuarioExistente
-    },
+    
 
   },
 
@@ -54,7 +51,7 @@ const resolversUsuario = {
     },
     editarUsuario: async (parent, args, context) => {
       if (context.userData.rol === "ADMINISTRADOR" && context.userData.estado === "AUTORIZADO" ){
-       
+      
         const usuarioEditado = await UserModel.findByIdAndUpdate(
         args._id,
         {
