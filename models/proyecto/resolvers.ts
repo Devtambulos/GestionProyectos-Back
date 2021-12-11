@@ -82,34 +82,33 @@ const resolversProyecto = {
         return "ERROR: no tienes los permisos"
       }
     },
-    // editarProyecto: async (parent, args, context) => {
-    //   if (context.userData.rol === "LIDER" && context.userData.estado === "AUTORIZADO") {
-    //     const proyectoEditado = await ProjectModel.findOneAndUpdate({ _id: args._id, estado: Enum_EstadoProyecto.ACTIVO }, {
-    //       nombre: args.nombre,
-    //       presupuesto: args.presupuesto,
-    //     });
+    editarProyecto: async (parent, args, context) => {
+      if (context.userData.rol === "LIDER" && context.userData.estado === "AUTORIZADO") {
+        const proyectoEditado = await ProjectModel.findOneAndUpdate({ _id: args._id, estado: Enum_EstadoProyecto.ACTIVO }, {
+          nombre: args.nombre,
+          presupuesto: args.presupuesto,
+        });
 
-    //     return proyectoEditado;
-    //   }
-    //   else if (context.userData.rol === "ADMINISTRADOR" && context.userData.estado === "AUTORIZADO") {
-    //     const proyectoEditado = await ProjectModel.findByIdAndUpdate(args._id, {
-    //       nombre: args.nombre,
-    //       fechaInicio: args.fechaInicio,
-    //       fechaFin: args.fechaFin,
-    //       presupuesto: args.presupuesto,
-    //       estado: args.estado,
-    //       fase: args.fase,
-    //       lider: args.lider,
-    //     },{new:true});
-    //     return proyectoEditado;
+        return proyectoEditado;
+      }
+      else if (context.userData.rol === "ADMINISTRADOR" && context.userData.estado === "AUTORIZADO") {
+        const proyectoEditado = await ProjectModel.findByIdAndUpdate(args._id, {
+          nombre: args.nombre,
+          fechaInicio: args.fechaInicio,
+          fechaFin: args.fechaFin,
+          presupuesto: args.presupuesto,
+          estado: args.estado,
+          fase: args.fase,
+        },{new:true});
+        return proyectoEditado;}
       
-      // else if (context.userData.rol === "ESTUDIANTE" && context.userData.estado === "AUTORIZADO") {
-      //   return "No tienes permiso"
-      // }
-      // else {
-      //   return "ERROR: no tienes los permisos"
-      // }
-    // },
+      else if (context.userData.rol === "ESTUDIANTE" && context.userData.estado === "AUTORIZADO") {
+        return "No tienes permiso"
+      }
+      else {
+        return "ERROR: no tienes los permisos"
+      }
+    },
 
     eliminarProyecto: async (parent, args) => {
       const proyectoEliminado = await ProjectModel.findOneAndDelete({ _id: args._id });
