@@ -22,6 +22,7 @@ const resolversObjetivo = {
         return objetivoFiltrado;
   
     },
+
   },
     Mutation: {
       crearObjetivo: async (parents, args) => {
