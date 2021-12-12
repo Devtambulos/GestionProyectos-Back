@@ -3,16 +3,16 @@ const resolversObjetivo = {
     Query: {
       
       Objetivos: async (parent, args,context) => {
-        if (context.userData.rol === "LIDER" && context.userData.estado === "AUTORIZADO") {
+        // if (context.userData.rol === "LIDER" && context.userData.estado === "AUTORIZADO") {
         const objetivos = await ObjetivoModel.find()
         .populate('proyecto');
         return objetivos;
-      }
-        else {
-        const objetivos = await ObjetivoModel.find()
-        .populate('proyecto');
-        return objetivos;
-        }
+      // }
+        // else {
+        // const objetivos = await ObjetivoModel.find()
+        // .populate('proyecto');
+        // return objetivos;
+        // }
 
     },
 
