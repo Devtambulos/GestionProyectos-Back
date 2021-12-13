@@ -27,14 +27,15 @@ export const resolversAutenticacion = {
         rol: args.rol,
         password: hashedPassword,
       });
-      console.log("usuario creado", usuarioCreado);
       
-
+      
       if(!usuarioCreado){
         return{
           error:"error al reg"
         }
       }
+      
+      console.log("usuario creado", usuarioCreado);
 
       return {
         token: generateToken({
