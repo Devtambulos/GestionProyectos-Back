@@ -3,11 +3,22 @@ import bcrypt from "bcrypt";
 import { generateToken } from "../../utils/tokenUtils";
 
 export const resolversAutenticacion = {
+
+
   Mutation: {
     registro: async (parent, args) => {
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(args.password, salt);
 
+      const busquedaUsuario = await UserModel.findOne({
+        correo: args.correo, identificaion: args.identificacion
+      })
+      if(busquedaUsuario){
+        return{
+          error:"Error: Existe un dato ya registrado por otro usuario"
+        }
+      }
+      
       const usuarioCreado = await UserModel.create({
         nombre: args.nombre,
         apellido: args.apellido,
@@ -16,6 +27,14 @@ export const resolversAutenticacion = {
         rol: args.rol,
         password: hashedPassword,
       });
+      
+      
+      if(!usuarioCreado){
+        return{
+          error:"error al reg"
+        }
+      }
+      
       console.log("usuario creado", usuarioCreado);
 
       return {
@@ -35,6 +54,13 @@ export const resolversAutenticacion = {
       const usuarioEncontrado = await UserModel.findOne({
         correo: args.correo,
       });
+
+      if(!usuarioEncontrado){
+        return{
+          error:"Correo no encontrado"
+        }
+      }
+
       if (await bcrypt.compare(args.password, usuarioEncontrado.password)) {
         return {
           token: generateToken({
@@ -47,6 +73,10 @@ export const resolversAutenticacion = {
             estado: usuarioEncontrado.estado
           }),
         };
+      }else{
+        return{
+          error:"contraseña incorrecta"
+        }
       }
       console.log(usuarioEncontrado);
     },

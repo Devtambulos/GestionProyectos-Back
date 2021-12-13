@@ -28,9 +28,10 @@ const resolversUsuario = {
         .populate("proyectos");
       return usuario;
     },
-
+    
 
   },
+
   Mutation: {
     crearUsuario: async (parent, args) => {
       const usuarioCreado = await UserModel.create({
@@ -50,7 +51,7 @@ const resolversUsuario = {
     },
     editarUsuario: async (parent, args, context) => {
       if (context.userData.rol === "ADMINISTRADOR" && context.userData.estado === "AUTORIZADO" ){
-       
+      
         const usuarioEditado = await UserModel.findByIdAndUpdate(
         args._id,
         {
