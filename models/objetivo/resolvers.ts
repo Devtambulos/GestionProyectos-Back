@@ -52,6 +52,11 @@ const resolversObjetivo = {
         const objetivoEliminado = await ObjetivoModel.findOneAndDelete({ _id: args._id });
         return objetivoEliminado;
     },
+
+    eliminarObjetivos: async (parent,args) =>{
+      const objetivosEliminados = await ObjetivoModel.deleteMany({proyecto: args.idProyecto})
+      return objetivosEliminados;
+    },
   }
 };
 
