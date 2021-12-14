@@ -10,6 +10,7 @@ const tiposObjetivo = gql`
   type Query {
     Objetivos: [Objetivo]
     filtrarObjetivo(idProyecto: String!): [Objetivo]
+    objetivo(_id: String!): Objetivo
   }
   type Mutation {
     crearObjetivo( 
@@ -25,6 +26,8 @@ const tiposObjetivo = gql`
     eliminarObjetivo(
       _id: String!
     ): Objetivo
+
+    eliminarObjetivos(idProyecto: String!) : [Objetivo]
   }
 `;
 

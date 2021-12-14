@@ -15,6 +15,11 @@ const resolversObjetivo = {
         // }
 
     },
+      objetivo: async (parents,args) => {
+        const objetivo = await ObjetivoModel.findById(args._id)
+        .populate('proyecto');
+        return objetivo;
+      },
 
       filtrarObjetivo: async (parents, args) => {
         const objetivoFiltrado = await ObjetivoModel.find({ proyecto: args.idProyecto })
@@ -35,32 +40,26 @@ const resolversObjetivo = {
       },
     
     editarObjetivo: async (parent, args, context) => {
-      if (context.userData.rol === "LIDER" && context.userData.estado === "AUTORIZADO"){
-      const objetivoEditado = await ObjetivoModel.findByIdAndUpdate(
-        args._id, 
-      {
-        descripcion: args.descripcion,
-      });
-
-      return objetivoEditado;
-    }
-      else {
         const objetivoEditado = await ObjetivoModel.findByIdAndUpdate(
           args._id, 
         {
           descripcion: args.descripcion,
-        });
-  
+        }, {new:true});
         return objetivoEditado;
-      }
-  },
+      },
 
     eliminarObjetivo: async (parent, args) => {
         const objetivoEliminado = await ObjetivoModel.findOneAndDelete({ _id: args._id });
         return objetivoEliminado;
     },
+
+    eliminarObjetivos: async (parent,args) =>{
+      const objetivosEliminados = await ObjetivoModel.deleteMany({proyecto: args.idProyecto})
+      return objetivosEliminados;
+    },
   }
 };
+
   
   export { resolversObjetivo };
 
