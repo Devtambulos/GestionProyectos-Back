@@ -40,7 +40,7 @@ const resolversProyecto = {
   Mutation: {
 
     crearProyecto: async (parent, args, context) => {
-      if (context.userData.rol === "ADMINISTRADOR" && context.userData.estado === "AUTORIZADO") {
+      // if (context.userData.rol === "ADMINISTRADOR" && context.userData.estado === "AUTORIZADO") {
         const proyectoCreado = await ProjectModel.create({
           nombre: args.nombre,
           fechaInicio: args.fechaInicio,
@@ -57,30 +57,30 @@ const resolversProyecto = {
           proyectoCreado.fase = args.fase;
         }
         return proyectoCreado;
-      }
-      else if (context.userData.rol === "LIDER" && context.userData.estado === "AUTORIZADO") {
-        const proyectoCreado = await ProjectModel.create({
-          nombre: args.nombre,
-          fechaInicio: args.fechaInicio,
-          fechaFin: args.fechaFin,
-          presupuesto: args.presupuesto,
-          lider: args.lider,
-        });
+      // }
+      // else if (context.userData.rol === "LIDER" && context.userData.estado === "AUTORIZADO") {
+      //   const proyectoCreado = await ProjectModel.create({
+      //     nombre: args.nombre,
+      //     fechaInicio: args.fechaInicio,
+      //     fechaFin: args.fechaFin,
+      //     presupuesto: args.presupuesto,
+      //     lider: args.lider,
+      //   });
 
-        if (Object.keys(args).includes('estado')) {
-          proyectoCreado.estado = args.estado;
-        }
+      //   if (Object.keys(args).includes('estado')) {
+      //     proyectoCreado.estado = args.estado;
+      //   }
 
-        if (Object.keys(args).includes('fase')) {
-          proyectoCreado.fase = args.fase;
-        }
-        return proyectoCreado;
-      }
-      else if (context.userData.rol === "ESTUDIANTE" && context.userData.estado === "AUTORIZADO") {
-        return "No tienes permiso"
-      } else {
-        return "ERROR: no tienes los permisos"
-      }
+      //   if (Object.keys(args).includes('fase')) {
+      //     proyectoCreado.fase = args.fase;
+      //   }
+      //   return proyectoCreado;
+      // }
+      // else if (context.userData.rol === "ESTUDIANTE" && context.userData.estado === "AUTORIZADO") {
+      //   return "No tienes permiso"
+      // } else {
+      //   return "ERROR: no tienes los permisos"
+      // }
     },
     editarProyecto: async (parent, args, context) => {
       if (context.userData.rol === "LIDER" && context.userData.estado === "AUTORIZADO") {
