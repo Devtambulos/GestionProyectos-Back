@@ -39,10 +39,11 @@ const resolversAvance = {
       editarAvance: async (parent, args, context) => {
         // if (context.userData.rol === "LIDER" && context.userData.estado === "AUTORIZADO"){
 
-        const avanceEditado = await AvanceModel.findByIdAndUpdate(args._id,{
-            observaciones: args.observaciones,
-            descripcion: args.descripcion
-          },{new:true});
+        const avanceEditado = await AvanceModel.findByIdAndUpdate(
+          args._id,
+          {...args.campos}, 
+          {new:true}
+          ); 
         return avanceEditado;
       // }
       // else {
