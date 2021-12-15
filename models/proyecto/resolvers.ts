@@ -27,6 +27,7 @@ const resolversProyecto = {
           .populate('objetivos');
         return proyectos;
       }
+
     },
     Proyecto: async (parent, args) => {
       const proyecto = await ProjectModel.findOne({ _id: args._id })
