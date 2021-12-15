@@ -70,7 +70,8 @@ export const resolversAutenticacion = {
             identificacion: usuarioEncontrado.identificacion,
             correo: usuarioEncontrado.correo,
             rol: usuarioEncontrado.rol,
-            estado: usuarioEncontrado.estado
+            estado: usuarioEncontrado.estado,
+            foto: usuarioEncontrado.foto,
           }),
         };
       }else{
@@ -96,7 +97,8 @@ export const resolversAutenticacion = {
             identificacion: context.userData.identificacion,
             correo: context.userData.correo,
             rol: context.userData.rol,
-            estado: context.userData.estado
+            estado: context.userData.estado,
+            foto: context.userData.foto,
           }),
         };
       }
