@@ -7,6 +7,7 @@ interface User {
   nombre: string;
   apellido: string;
   identificacion: string;
+  foto: string;
   correo: string;
   rol: Enum_Rol;
   estado: Enum_EstadoUsuario;
@@ -22,6 +23,10 @@ const userSchema = new Schema<User>(
     apellido: {
       type: String,
       required: true,
+    },
+    foto: {
+      type: String,
+      required: false,
     },
     correo: {
       type: String,
