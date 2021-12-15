@@ -26,6 +26,8 @@ const tiposObjetivo = gql`
     eliminarObjetivo(
       _id: String!
     ): Objetivo
+
+    eliminarObjetivos(idProyecto: String!) : [Objetivo]
   }
 `;
 

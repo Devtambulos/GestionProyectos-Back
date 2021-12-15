@@ -20,7 +20,7 @@ const tiposProyecto = gql`
     fechaFin: Date
     estado: Enum_EstadoProyecto
     fase: Enum_FaseProyecto
-    lider: Usuario
+    lider: Usuario!
     objetivos: [Objetivo]
     avances: [Avance]
     inscripciones: [Inscripcion]
@@ -44,7 +44,7 @@ const tiposProyecto = gql`
       fechaFin: Date
       estado: Enum_EstadoProyecto
       fase: Enum_FaseProyecto
-      lider: String
+      lider: String!
     ): Proyecto
 
     editarProyecto(
