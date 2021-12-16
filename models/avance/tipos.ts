@@ -28,7 +28,7 @@ const tiposAvance = gql`
       creadoPor: String!
       fecha: String): Avance
 
-    editarAvance(_id: String!, campos: camposAvances!) : Avance
+    editarAvance(_id: String!, campos: camposAvances) : Avance
 
     eliminarAvance(
       _id: String!
