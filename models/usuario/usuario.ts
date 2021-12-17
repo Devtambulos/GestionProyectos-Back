@@ -1,5 +1,4 @@
 import { Schema, model } from "mongoose";
-
 import { Enum_Rol } from "../enums/enums";
 import { Enum_EstadoUsuario } from "../enums/enums";
 
