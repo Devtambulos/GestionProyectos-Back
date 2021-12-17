@@ -4,7 +4,7 @@ const resolverInscripciones = {
   Query: {
     Inscripciones: async (parent, args) => {
       const inscripciones =
-        await InscriptionModel.find().populate('proyecto').populate("estudiante"); 
+        await InscriptionModel.find().populate('proyecto').populate("estudiante");
         return inscripciones;
     },
   },
@@ -26,6 +26,8 @@ const resolverInscripciones = {
         },
         {new: true}
       ).populate('proyecto').populate("estudiante");
+      
+      console.log("inscribir: ", inscripcionAprobada)
       return inscripcionAprobada;
     },
     terminarInscripcion: async (parent, args) => {

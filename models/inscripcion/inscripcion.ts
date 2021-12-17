@@ -27,6 +27,7 @@ const inscriptionSchema = new Schema/* <Inscription> */({
     },
     fechaEgreso: {
         type: Date,
+        default: "aaaa-mm-dd",
         required: false,
     },
     proyecto: {
