@@ -32,6 +32,7 @@ const resolversAvance = {
   Mutation: {
     crearAvance: async (parents, args) => {
       const fechaN = new Date();
+      
       const avanceCreado = await AvanceModel.create({
         fecha: fechaN.toISOString().split('T')[0],
         descripcion: args.descripcion,
@@ -45,7 +46,7 @@ const resolversAvance = {
       return avanceCreado;
     },
     editarAvance: async (parent, args, context) => {
-      // if (context.userData.rol === "LIDER" && context.userData.estado === "AUTORIZADO"){
+      if (context.userData.rol === "LIDER" && context.userData.estado === "AUTORIZADO"){
 
       const avanceEditado = await AvanceModel.findByIdAndUpdate(
         args._id,
@@ -55,15 +56,15 @@ const resolversAvance = {
         }, { new: true }
       );
       return avanceEditado;
-      // }
-      // else {
-      //   const avanceEditado = await AvanceModel.findByIdAndUpdate(args._id,{
-      //     descripcion: args.descripcion,
-      //     observaciones: args.observaciones,
-      //     fecha: args.fecha,
-      //   },{new:true});
-      // return avanceEditado;
-      // }
+      }
+      else {
+        const avanceEditado = await AvanceModel.findByIdAndUpdate(args._id,{
+          descripcion: args.descripcion,
+          observaciones: args.observaciones,
+          fecha: args.fecha,
+        },{new:true});
+      return avanceEditado;
+      }
     },
     eliminarAvance: async (parent, args) => {
       const avanceEliminado = await AvanceModel.findOneAndDelete({ _id: args._id });

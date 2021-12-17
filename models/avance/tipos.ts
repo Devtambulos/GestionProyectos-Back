@@ -27,7 +27,7 @@ const tiposAvance = gql`
       descripcion: String!
       proyecto: String!
       creadoPor: String!
-      fecha: String): Avance
+      fecha: Date): Avance
 
     editarAvance(
       _id: String!, 
