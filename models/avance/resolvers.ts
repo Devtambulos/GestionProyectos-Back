@@ -1,4 +1,6 @@
 import { AvanceModel } from "./avance";
+import { ProjectModel } from "../proyecto/proyecto";
+import { Enum_FaseProyecto } from "../enums/enums";
 const resolversAvance = {
   Query: {
     Avances: async (parent, args, context) => {
@@ -39,10 +41,21 @@ const resolversAvance = {
         proyecto: args.proyecto,
         creadoPor: args.creadoPor,
       });
-
       if (Object.keys(args).includes('fecha')) {
         avanceCreado.fecha = args.fecha;
       }
+
+      const avances = await AvanceModel.find({proyecto: avanceCreado.proyecto});
+
+      if ( avances.length === 1) {
+        const modificarProyecto = await ProjectModel.findOneAndUpdate(
+          { _id: avanceCreado.proyecto },
+          {
+            fase: Enum_FaseProyecto.DESARROLLO,
+          }
+        );
+      }
+
       return avanceCreado;
     },
     editarAvance: async (parent, args, context) => {
