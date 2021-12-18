@@ -1,12 +1,14 @@
 import { AvanceModel } from "./avance";
+import { ProjectModel } from "../proyecto/proyecto";
+import { Enum_FaseProyecto } from "../enums/enums";
 const resolversAvance = {
-    Query: {
-      Avances: async (parent, args, context) => {
-        // if (context.userData.rol === "LIDER" && context.userData.estado === "AUTORIZADO"){
-        const avances = await AvanceModel.find()
-          .populate('proyecto')
-          .populate('creadoPor');
-        return avances;
+  Query: {
+    Avances: async (parent, args, context) => {
+      // if (context.userData.rol === "LIDER" && context.userData.estado === "AUTORIZADO"){
+      const avances = await AvanceModel.find()
+        .populate('proyecto')
+        .populate('creadoPor');
+      return avances;
       // }
       // else {
       //   const avances = await AvanceModel.find()
@@ -15,50 +17,73 @@ const resolversAvance = {
       //   return avances;
       // }
     },
-      filtrarAvance: async (parents, args) => {
-        const avanceFiltrado = await AvanceModel.find({ proyecto: args.idProyecto })
-          .populate('proyecto')
-          .populate('creadoPor');
-        return avanceFiltrado;
-      },
+
+    avance: async (parents, args) => {
+      const avance = await AvanceModel.findById(args._id)
+        .populate('proyecto')
+        .populate('creadoPor');
+      return avance;
     },
-    Mutation: {
-      crearAvance: async (parents, args) => {
-        const avanceCreado = await AvanceModel.create({
-          fecha: Date.now(),
+    filtrarAvance: async (parents, args) => {
+      const avanceFiltrado = await AvanceModel.find({ proyecto: args.idProyecto })
+        .populate('proyecto')
+        .populate('creadoPor');
+      return avanceFiltrado;
+    },
+  },
+  Mutation: {
+    crearAvance: async (parents, args) => {
+      const fechaN = new Date();
+      
+      const avanceCreado = await AvanceModel.create({
+        fecha: fechaN.toISOString().split('T')[0],
+        descripcion: args.descripcion,
+        proyecto: args.proyecto,
+        creadoPor: args.creadoPor,
+      });
+      if (Object.keys(args).includes('fecha')) {
+        avanceCreado.fecha = args.fecha;
+      }
+
+      const avances = await AvanceModel.find({proyecto: avanceCreado.proyecto});
+
+      if ( avances.length === 1) {
+        const modificarProyecto = await ProjectModel.findOneAndUpdate(
+          { _id: avanceCreado.proyecto },
+          {
+            fase: Enum_FaseProyecto.DESARROLLO,
+          }
+        );
+      }
+
+      return avanceCreado;
+    },
+    editarAvance: async (parent, args, context) => {
+      if (context.userData.rol === "LIDER" && context.userData.estado === "AUTORIZADO"){
+
+      const avanceEditado = await AvanceModel.findByIdAndUpdate(
+        args._id,
+        {
           descripcion: args.descripcion,
-          proyecto: args.proyecto,
-          creadoPor: args.creadoPor,
-        });
-
-        if (Object.keys(args).includes('fecha')) {
-          avanceCreado.fecha = args.fecha;
-        }
-        return avanceCreado;
-      },
-      editarAvance: async (parent, args, context) => {
-        // if (context.userData.rol === "LIDER" && context.userData.estado === "AUTORIZADO"){
-
+          observaciones: args.observaciones,
+        }, { new: true }
+      );
+      return avanceEditado;
+      }
+      else {
         const avanceEditado = await AvanceModel.findByIdAndUpdate(args._id,{
-            observaciones: args.observaciones,
-            descripcion: args.descripcion
-          },{new:true});
-        return avanceEditado;
-      // }
-      // else {
-      //   const avanceEditado = await AvanceModel.findByIdAndUpdate(args._id,{
-      //     descripcion: args.descripcion,
-      //     observaciones: args.observaciones,
-      //     fecha: args.fecha,
-      //   },{new:true});
-      // return avanceEditado;
-      // }
-    },
-      eliminarAvance: async (parent, args) => {
-        const avanceEliminado = await AvanceModel.findOneAndDelete({_id: args._id});
-        return avanceEliminado;
+          descripcion: args.descripcion,
+          observaciones: args.observaciones,
+          fecha: args.fecha,
+        },{new:true});
+      return avanceEditado;
       }
     },
-  };
-  
-  export { resolversAvance };
+    eliminarAvance: async (parent, args) => {
+      const avanceEliminado = await AvanceModel.findOneAndDelete({ _id: args._id });
+      return avanceEliminado;
+    }
+  },
+};
+
+export { resolversAvance };
